@@ -27,21 +27,77 @@ public class Login extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        jLabelLogin = new javax.swing.JLabel();
+        jLabelUsuario = new javax.swing.JLabel();
+        jLabelSenha = new javax.swing.JLabel();
+        textUsuario = new javax.swing.JTextField();
+        TextSenha = new javax.swing.JPasswordField();
+        jButtonEntrar = new javax.swing.JButton();
+        jLabelPainel = new javax.swing.JLabel();
+        jLabelFundo = new javax.swing.JLabel();
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
-        );
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabelLogin.setBackground(new java.awt.Color(255, 255, 255));
+        jLabelLogin.setFont(new java.awt.Font("Monospaced", 1, 48)); // NOI18N
+        jLabelLogin.setForeground(new java.awt.Color(255, 255, 255));
+        jLabelLogin.setText("Login");
+        getContentPane().add(jLabelLogin, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 100, 150, 60));
+
+        jLabelUsuario.setBackground(new java.awt.Color(255, 255, 255));
+        jLabelUsuario.setFont(new java.awt.Font("Monospaced", 1, 24)); // NOI18N
+        jLabelUsuario.setForeground(new java.awt.Color(255, 255, 255));
+        jLabelUsuario.setText("Usuario");
+        getContentPane().add(jLabelUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 190, -1, 60));
+
+        jLabelSenha.setBackground(new java.awt.Color(255, 255, 255));
+        jLabelSenha.setFont(new java.awt.Font("Monospaced", 1, 24)); // NOI18N
+        jLabelSenha.setForeground(new java.awt.Color(255, 255, 255));
+        jLabelSenha.setText("Senha");
+        getContentPane().add(jLabelSenha, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 330, -1, 60));
+
+        textUsuario.setBackground(new java.awt.Color(255, 255, 255));
+        getContentPane().add(textUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 260, 320, 40));
+
+        TextSenha.setBackground(new java.awt.Color(255, 255, 255));
+        TextSenha.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                TextSenhaActionPerformed(evt);
+            }
+        });
+        getContentPane().add(TextSenha, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 400, 320, 40));
+
+        jButtonEntrar.setBackground(new java.awt.Color(102, 102, 102));
+        jButtonEntrar.setFont(new java.awt.Font("Monospaced", 0, 18)); // NOI18N
+        jButtonEntrar.setForeground(new java.awt.Color(255, 255, 255));
+        jButtonEntrar.setText("Entrar");
+        jButtonEntrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonEntrarActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButtonEntrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 460, -1, -1));
+
+        jLabelPainel.setFont(new java.awt.Font("Copperplate Gothic Bold", 3, 11)); // NOI18N
+        jLabelPainel.setForeground(new java.awt.Color(204, 204, 204));
+        jLabelPainel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/painel-login.png"))); // NOI18N
+        jLabelPainel.setText("jLabel2");
+        getContentPane().add(jLabelPainel, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 50, 550, 470));
+
+        jLabelFundo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/login.jpg"))); // NOI18N
+        getContentPane().add(jLabelFundo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void TextSenhaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TextSenhaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_TextSenhaActionPerformed
+
+    private void jButtonEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEntrarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonEntrarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -79,5 +135,13 @@ public class Login extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPasswordField TextSenha;
+    private javax.swing.JButton jButtonEntrar;
+    private javax.swing.JLabel jLabelFundo;
+    private javax.swing.JLabel jLabelLogin;
+    private javax.swing.JLabel jLabelPainel;
+    private javax.swing.JLabel jLabelSenha;
+    private javax.swing.JLabel jLabelUsuario;
+    private javax.swing.JTextField textUsuario;
     // End of variables declaration//GEN-END:variables
 }
