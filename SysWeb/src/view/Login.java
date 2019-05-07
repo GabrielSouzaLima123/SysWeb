@@ -48,7 +48,7 @@ public class Login extends javax.swing.JFrame {
         jLabelUsuario.setBackground(new java.awt.Color(255, 255, 255));
         jLabelUsuario.setFont(new java.awt.Font("Monospaced", 1, 24)); // NOI18N
         jLabelUsuario.setForeground(new java.awt.Color(255, 255, 255));
-        jLabelUsuario.setText("Usuario");
+        jLabelUsuario.setText("Usuário");
         getContentPane().add(jLabelUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 190, -1, 60));
 
         jLabelSenha.setBackground(new java.awt.Color(255, 255, 255));
@@ -56,11 +56,8 @@ public class Login extends javax.swing.JFrame {
         jLabelSenha.setForeground(new java.awt.Color(255, 255, 255));
         jLabelSenha.setText("Senha");
         getContentPane().add(jLabelSenha, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 330, -1, 60));
-
-        textUsuario.setBackground(new java.awt.Color(255, 255, 255));
         getContentPane().add(textUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 260, 320, 40));
 
-        TextSenha.setBackground(new java.awt.Color(255, 255, 255));
         TextSenha.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 TextSenhaActionPerformed(evt);
@@ -70,7 +67,6 @@ public class Login extends javax.swing.JFrame {
 
         jButtonEntrar.setBackground(new java.awt.Color(102, 102, 102));
         jButtonEntrar.setFont(new java.awt.Font("Monospaced", 0, 18)); // NOI18N
-        jButtonEntrar.setForeground(new java.awt.Color(255, 255, 255));
         jButtonEntrar.setText("Entrar");
         jButtonEntrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
