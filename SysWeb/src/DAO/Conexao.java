@@ -11,7 +11,7 @@ public class Conexao {
         Connection con = null;
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            String url="jdbc:mysql://localhost:3333/funcionario?useTimezone=true&serverTimezone=UTC";
+            String url="jdbc:mysql://localhost:3333/imobiliario?useTimezone=true&serverTimezone=UTC";
             con= DriverManager.getConnection(url,"root","admin");
             
         }catch (Exception e){

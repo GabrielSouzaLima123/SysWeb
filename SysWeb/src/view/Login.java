@@ -5,17 +5,54 @@
  */
 package view;
 
+import java.sql.*;
+import DAO.Conexao;
+import javax.swing.JOptionPane;
+
 /**
  *
- * @author Web Imoveis
+ * @author Gabriel
  */
 public class Login extends javax.swing.JFrame {
+
+    Connection con = null;
+    PreparedStatement pst = null;
+    ResultSet rs = null;
+
+    public void logar() {
+        String sql = "select * from tbusuario where usuario=? and senha =?";
+        try {
+            pst = con.prepareStatement(sql);
+            pst.setString(1, txtUsuario.getText());
+            pst.setString(2, txtSenha.getText());
+
+            rs = pst.executeQuery();
+            if (rs.next()) {
+                TelaInicial inicial = new TelaInicial();
+                inicial.setVisible(true);
+                this.dispose();
+                con.close();
+            } else {
+                JOptionPane.showMessageDialog(null, "usuario e/ou senha invalido(s)");
+            }
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e);
+        }
+    }
 
     /**
      * Creates new form Login
      */
     public Login() {
         initComponents();
+        con = Conexao.AbrirConexao();
+        //System.out.println(con);
+        if (con != null) {
+            lblStatus.setText("Conectado");
+        } else {
+            lblStatus.setText("Desconectado");
+        }
     }
 
     /**
@@ -27,73 +64,99 @@ public class Login extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabelLogin = new javax.swing.JLabel();
-        jLabelUsuario = new javax.swing.JLabel();
-        jLabelSenha = new javax.swing.JLabel();
-        textUsuario = new javax.swing.JTextField();
-        TextSenha = new javax.swing.JPasswordField();
-        jButtonEntrar = new javax.swing.JButton();
-        jLabelPainel = new javax.swing.JLabel();
-        jLabelFundo = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        btnLogin = new javax.swing.JButton();
+        txtSenha = new javax.swing.JPasswordField();
+        txtUsuario = new javax.swing.JTextField();
+        lblStatus = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        setTitle("Web Imóveis - Login");
+        setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        setResizable(false);
 
-        jLabelLogin.setBackground(new java.awt.Color(255, 255, 255));
-        jLabelLogin.setFont(new java.awt.Font("Monospaced", 1, 48)); // NOI18N
-        jLabelLogin.setForeground(new java.awt.Color(255, 255, 255));
-        jLabelLogin.setText("Login");
-        getContentPane().add(jLabelLogin, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 100, 150, 60));
+        jLabel1.setText("Usuário");
 
-        jLabelUsuario.setBackground(new java.awt.Color(255, 255, 255));
-        jLabelUsuario.setFont(new java.awt.Font("Monospaced", 1, 24)); // NOI18N
-        jLabelUsuario.setForeground(new java.awt.Color(255, 255, 255));
-        jLabelUsuario.setText("Usuário");
-        getContentPane().add(jLabelUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 190, -1, 60));
+        jLabel2.setText("Senha");
 
-        jLabelSenha.setBackground(new java.awt.Color(255, 255, 255));
-        jLabelSenha.setFont(new java.awt.Font("Monospaced", 1, 24)); // NOI18N
-        jLabelSenha.setForeground(new java.awt.Color(255, 255, 255));
-        jLabelSenha.setText("Senha");
-        getContentPane().add(jLabelSenha, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 330, -1, 60));
-        getContentPane().add(textUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 260, 320, 40));
-
-        TextSenha.addActionListener(new java.awt.event.ActionListener() {
+        btnLogin.setText("Login");
+        btnLogin.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                TextSenhaActionPerformed(evt);
+                btnLoginActionPerformed(evt);
             }
         });
-        getContentPane().add(TextSenha, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 400, 320, 40));
 
-        jButtonEntrar.setBackground(new java.awt.Color(102, 102, 102));
-        jButtonEntrar.setFont(new java.awt.Font("Monospaced", 0, 18)); // NOI18N
-        jButtonEntrar.setText("Entrar");
-        jButtonEntrar.addActionListener(new java.awt.event.ActionListener() {
+        txtSenha.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonEntrarActionPerformed(evt);
+                txtSenhaActionPerformed(evt);
             }
         });
-        getContentPane().add(jButtonEntrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 460, -1, -1));
 
-        jLabelPainel.setFont(new java.awt.Font("Copperplate Gothic Bold", 3, 11)); // NOI18N
-        jLabelPainel.setForeground(new java.awt.Color(204, 204, 204));
-        jLabelPainel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/painel-login.png"))); // NOI18N
-        jLabelPainel.setText("jLabel2");
-        getContentPane().add(jLabelPainel, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 50, 550, 470));
+        txtUsuario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtUsuarioActionPerformed(evt);
+            }
+        });
 
-        jLabelFundo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/login.jpg"))); // NOI18N
-        getContentPane().add(jLabelFundo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+        lblStatus.setText("Status");
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(37, 37, 37)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel1))
+                        .addGap(41, 41, 41)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(txtSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(53, 53, 53)
+                        .addComponent(lblStatus)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnLogin)))
+                .addContainerGap(65, Short.MAX_VALUE))
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap(58, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(txtUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(35, 35, 35)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(txtSenha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(43, 43, 43)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnLogin)
+                    .addComponent(lblStatus))
+                .addGap(53, 53, 53))
+        );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void TextSenhaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TextSenhaActionPerformed
+    private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_TextSenhaActionPerformed
+        logar();
+    }//GEN-LAST:event_btnLoginActionPerformed
 
-    private void jButtonEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEntrarActionPerformed
+    private void txtSenhaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSenhaActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButtonEntrarActionPerformed
+    }//GEN-LAST:event_txtSenhaActionPerformed
+
+    private void txtUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtUsuarioActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtUsuarioActionPerformed
 
     /**
      * @param args the command line arguments
@@ -131,13 +194,11 @@ public class Login extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JPasswordField TextSenha;
-    private javax.swing.JButton jButtonEntrar;
-    private javax.swing.JLabel jLabelFundo;
-    private javax.swing.JLabel jLabelLogin;
-    private javax.swing.JLabel jLabelPainel;
-    private javax.swing.JLabel jLabelSenha;
-    private javax.swing.JLabel jLabelUsuario;
-    private javax.swing.JTextField textUsuario;
+    private javax.swing.JButton btnLogin;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel lblStatus;
+    private javax.swing.JPasswordField txtSenha;
+    private javax.swing.JTextField txtUsuario;
     // End of variables declaration//GEN-END:variables
 }
