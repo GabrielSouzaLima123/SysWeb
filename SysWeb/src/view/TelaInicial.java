@@ -5,6 +5,10 @@
  */
 package view;
 
+import java.text.DateFormat;
+import java.util.Date;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Windows
@@ -51,8 +55,14 @@ public class TelaInicial extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Web Imóveis - Inicio");
         setResizable(false);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowActivated(java.awt.event.WindowEvent evt) {
+                formWindowActivated(evt);
+            }
+        });
 
         Desktop.setName(""); // NOI18N
+        Desktop.setVerifyInputWhenFocusTarget(false);
 
         javax.swing.GroupLayout DesktopLayout = new javax.swing.GroupLayout(Desktop);
         Desktop.setLayout(DesktopLayout);
@@ -88,12 +98,19 @@ public class TelaInicial extends javax.swing.JFrame {
         MenCadImo.setText("Imóvel");
         MenCad.add(MenCadImo);
 
-        MenCadUso.setText("Usuário");
+        MenCadUso.setText("Usuários");
+        MenCadUso.setEnabled(false);
+        MenCadUso.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MenCadUsoActionPerformed(evt);
+            }
+        });
         MenCad.add(MenCadUso);
 
         Menu.add(MenCad);
 
         MenRel.setText("Relatório");
+        MenRel.setEnabled(false);
 
         MenRelAge.setText("Agendamento");
         MenRel.add(MenRelAge);
@@ -115,6 +132,11 @@ public class TelaInicial extends javax.swing.JFrame {
         MenAju.setText("Ajuda");
 
         MenAjuSob.setText("Sobre");
+        MenAjuSob.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MenAjuSobActionPerformed(evt);
+            }
+        });
         MenAju.add(MenAjuSob);
 
         Menu.add(MenAju);
@@ -123,6 +145,11 @@ public class TelaInicial extends javax.swing.JFrame {
 
         MenOpcSai.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F4, java.awt.event.InputEvent.ALT_MASK));
         MenOpcSai.setText("Sair");
+        MenOpcSai.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MenOpcSaiActionPerformed(evt);
+            }
+        });
         MenOpc.add(MenOpcSai);
 
         Menu.add(MenOpc);
@@ -135,18 +162,18 @@ public class TelaInicial extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(Desktop, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(Desktop)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(18, 18, 18)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(14, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(lblUsuario)
-                            .addComponent(lblData))
-                        .addGap(114, 114, 114))))
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(78, 78, 78)
+                        .addComponent(lblData))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(89, 89, 89)
+                        .addComponent(lblUsuario)))
+                .addContainerGap(14, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -156,10 +183,10 @@ public class TelaInicial extends javax.swing.JFrame {
                         .addContainerGap()
                         .addComponent(Desktop))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(36, 36, 36)
-                        .addComponent(lblUsuario)
-                        .addGap(37, 37, 37)
+                        .addGap(60, 60, 60)
                         .addComponent(lblData)
+                        .addGap(31, 31, 31)
+                        .addComponent(lblUsuario)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
@@ -172,6 +199,35 @@ public class TelaInicial extends javax.swing.JFrame {
     private void MenCadCliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenCadCliActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_MenCadCliActionPerformed
+
+    private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
+        // TODO add your handling code here:
+        Date data = new Date();
+        DateFormat formatador = DateFormat.getDateInstance(DateFormat.SHORT);
+        lblData.setText(formatador.format(data));
+    }//GEN-LAST:event_formWindowActivated
+
+    private void MenOpcSaiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenOpcSaiActionPerformed
+        // TODO add your handling code here:
+        int sair = JOptionPane.showConfirmDialog(null, "Tem certeza que deseja sair?", "Atenção", JOptionPane.YES_NO_OPTION);
+        if (sair == JOptionPane.YES_OPTION){
+            System.exit(0);
+        }
+    }//GEN-LAST:event_MenOpcSaiActionPerformed
+
+    private void MenAjuSobActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenAjuSobActionPerformed
+        // TODO add your handling code here:
+        TelaSobre sobre = new TelaSobre();
+        sobre.setVisible(true);
+    }//GEN-LAST:event_MenAjuSobActionPerformed
+
+    private void MenCadUsoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenCadUsoActionPerformed
+        // TODO add your handling code here:
+        TelaUsuario usuario = new TelaUsuario();
+        usuario.setVisible(true);
+        Desktop.add(usuario);
+        
+    }//GEN-LAST:event_MenCadUsoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -222,10 +278,10 @@ public class TelaInicial extends javax.swing.JFrame {
     private javax.swing.JMenu MenCad;
     private javax.swing.JMenuItem MenCadCli;
     private javax.swing.JMenuItem MenCadImo;
-    private javax.swing.JMenuItem MenCadUso;
+    public static javax.swing.JMenuItem MenCadUso;
     private javax.swing.JMenu MenOpc;
     private javax.swing.JMenuItem MenOpcSai;
-    private javax.swing.JMenu MenRel;
+    public static javax.swing.JMenu MenRel;
     private javax.swing.JMenuItem MenRelAge;
     private javax.swing.JMenuItem MenRelCom;
     private javax.swing.JMenuBar Menu;
@@ -234,6 +290,6 @@ public class TelaInicial extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu6;
     private javax.swing.JMenu jMenu7;
     private javax.swing.JLabel lblData;
-    private javax.swing.JLabel lblUsuario;
+    public static javax.swing.JLabel lblUsuario;
     // End of variables declaration//GEN-END:variables
 }

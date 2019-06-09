@@ -7,6 +7,7 @@ package view;
 
 import java.sql.*;
 import DAO.Conexao;
+import java.awt.Color;
 import javax.swing.JOptionPane;
 
 /**
@@ -28,10 +29,25 @@ public class Login extends javax.swing.JFrame {
 
             rs = pst.executeQuery();
             if (rs.next()) {
-                TelaInicial inicial = new TelaInicial();
-                inicial.setVisible(true);
-                this.dispose();
-                con.close();
+
+                String perfil = rs.getString(6);
+                //System.out.println(perfil);
+                if (perfil.equals("admin")) {
+                    TelaInicial inicial = new TelaInicial();
+                    inicial.setVisible(true);
+                    TelaInicial.MenRel.setEnabled(true);
+                    TelaInicial.MenCadUso.setEnabled(true);
+                    TelaInicial.lblUsuario.setText(rs.getString(2));
+                    TelaInicial.lblUsuario.setForeground(Color.red);
+                    this.dispose();
+                    con.close();
+                }else{
+                    TelaInicial inicial = new TelaInicial();
+                    inicial.setVisible(true);
+                    TelaInicial.lblUsuario.setText(rs.getString(2));
+                    this.dispose();
+                    con.close();
+                }
             } else {
                 JOptionPane.showMessageDialog(null, "usuario e/ou senha invalido(s)");
             }
