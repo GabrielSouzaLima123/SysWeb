@@ -14,7 +14,7 @@ import javax.swing.JOptionPane;
  * @author Windows
  */
 public class TelaInicial extends javax.swing.JFrame {
-
+    
     /**
      * Creates new form Login
      */
@@ -36,17 +36,17 @@ public class TelaInicial extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         lblUsuario = new javax.swing.JLabel();
         lblData = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
         Menu = new javax.swing.JMenuBar();
         MenCad = new javax.swing.JMenu();
         MenCadCli = new javax.swing.JMenuItem();
-        MenCadImo = new javax.swing.JMenuItem();
+        MenCadRel = new javax.swing.JMenuItem();
         MenCadUso = new javax.swing.JMenuItem();
+        MenCadImo = new javax.swing.JMenuItem();
+        jMenu2 = new javax.swing.JMenu();
+        jMenu1 = new javax.swing.JMenu();
         MenRel = new javax.swing.JMenu();
-        MenRelAge = new javax.swing.JMenuItem();
-        MenRelCom = new javax.swing.JMenuItem();
-        jMenu5 = new javax.swing.JMenu();
-        jMenu6 = new javax.swing.JMenu();
-        jMenu7 = new javax.swing.JMenu();
         MenAju = new javax.swing.JMenu();
         MenAjuSob = new javax.swing.JMenuItem();
         MenOpc = new javax.swing.JMenu();
@@ -68,11 +68,11 @@ public class TelaInicial extends javax.swing.JFrame {
         Desktop.setLayout(DesktopLayout);
         DesktopLayout.setHorizontalGroup(
             DesktopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 640, Short.MAX_VALUE)
+            .addGap(0, 628, Short.MAX_VALUE)
         );
         DesktopLayout.setVerticalGroup(
             DesktopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 472, Short.MAX_VALUE)
+            .addGap(0, 474, Short.MAX_VALUE)
         );
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/imovel.png"))); // NOI18N
@@ -82,6 +82,12 @@ public class TelaInicial extends javax.swing.JFrame {
 
         lblData.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         lblData.setText("Data");
+
+        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel4.setText("Seja bem vindo");
+
+        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel2.setText("!");
 
         MenCad.setText("Cadastro");
 
@@ -94,10 +100,17 @@ public class TelaInicial extends javax.swing.JFrame {
         });
         MenCad.add(MenCadCli);
 
-        MenCadImo.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_I, java.awt.event.InputEvent.ALT_MASK));
-        MenCadImo.setText("Imóvel");
-        MenCad.add(MenCadImo);
+        MenCadRel.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_R, java.awt.event.InputEvent.ALT_MASK));
+        MenCadRel.setText("Relatório");
+        MenCadRel.setEnabled(false);
+        MenCadRel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MenCadRelActionPerformed(evt);
+            }
+        });
+        MenCad.add(MenCadRel);
 
+        MenCadUso.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_U, java.awt.event.InputEvent.ALT_MASK));
         MenCadUso.setText("Usuários");
         MenCadUso.setEnabled(false);
         MenCadUso.addActionListener(new java.awt.event.ActionListener() {
@@ -107,30 +120,30 @@ public class TelaInicial extends javax.swing.JFrame {
         });
         MenCad.add(MenCadUso);
 
+        MenCadImo.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_I, java.awt.event.InputEvent.ALT_MASK));
+        MenCadImo.setText("Imóvel");
+        MenCadImo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MenCadImoActionPerformed(evt);
+            }
+        });
+        MenCad.add(MenCadImo);
+
         Menu.add(MenCad);
+
+        jMenu2.setText("Venda");
+        Menu.add(jMenu2);
+
+        jMenu1.setText("Locação");
+        Menu.add(jMenu1);
 
         MenRel.setText("Relatório");
         MenRel.setEnabled(false);
-
-        MenRelAge.setText("Agendamento");
-        MenRel.add(MenRelAge);
-
-        MenRelCom.setText("Compra");
-        MenRel.add(MenRelCom);
-
         Menu.add(MenRel);
-
-        jMenu5.setText("Locação");
-        Menu.add(jMenu5);
-
-        jMenu6.setText("Venda");
-        Menu.add(jMenu6);
-
-        jMenu7.setText("Contato");
-        Menu.add(jMenu7);
 
         MenAju.setText("Ajuda");
 
+        MenAjuSob.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_S, java.awt.event.InputEvent.ALT_MASK));
         MenAjuSob.setText("Sobre");
         MenAjuSob.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -164,16 +177,23 @@ public class TelaInicial extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(Desktop)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(lblData)
+                        .addGap(94, 94, 94))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(78, 78, 78)
-                        .addComponent(lblData))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(89, 89, 89)
-                        .addComponent(lblUsuario)))
-                .addContainerGap(14, Short.MAX_VALUE))
+                        .addGap(22, 22, 22)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 237, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel4)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(lblUsuario)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addContainerGap())))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -183,10 +203,13 @@ public class TelaInicial extends javax.swing.JFrame {
                         .addContainerGap()
                         .addComponent(Desktop))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(60, 60, 60)
+                        .addGap(79, 79, 79)
                         .addComponent(lblData)
-                        .addGap(31, 31, 31)
-                        .addComponent(lblUsuario)
+                        .addGap(26, 26, 26)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(lblUsuario)
+                            .addComponent(jLabel4)
+                            .addComponent(jLabel2))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
@@ -198,6 +221,9 @@ public class TelaInicial extends javax.swing.JFrame {
 
     private void MenCadCliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenCadCliActionPerformed
         // TODO add your handling code here:
+        TelaCliente cliente = new TelaCliente();
+        cliente.setVisible(true);
+        Desktop.add(cliente);
     }//GEN-LAST:event_MenCadCliActionPerformed
 
     private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
@@ -228,6 +254,19 @@ public class TelaInicial extends javax.swing.JFrame {
         Desktop.add(usuario);
         
     }//GEN-LAST:event_MenCadUsoActionPerformed
+
+    private void MenCadRelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenCadRelActionPerformed
+        // TODO add your handling code here:
+        TelaRelatorio relatorio = new TelaRelatorio();
+        relatorio.setVisible(true);
+        Desktop.add(relatorio);
+    }//GEN-LAST:event_MenCadRelActionPerformed
+
+    private void MenCadImoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenCadImoActionPerformed
+        // TODO add your handling code here:
+        TelaVenda venda = new TelaVenda();
+        venda.setVisible(true);
+    }//GEN-LAST:event_MenCadImoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -275,20 +314,20 @@ public class TelaInicial extends javax.swing.JFrame {
     private javax.swing.JDesktopPane Desktop;
     private javax.swing.JMenu MenAju;
     private javax.swing.JMenuItem MenAjuSob;
-    private javax.swing.JMenu MenCad;
+    private static javax.swing.JMenu MenCad;
     private javax.swing.JMenuItem MenCadCli;
     private javax.swing.JMenuItem MenCadImo;
+    public static javax.swing.JMenuItem MenCadRel;
     public static javax.swing.JMenuItem MenCadUso;
     private javax.swing.JMenu MenOpc;
     private javax.swing.JMenuItem MenOpcSai;
     public static javax.swing.JMenu MenRel;
-    private javax.swing.JMenuItem MenRelAge;
-    private javax.swing.JMenuItem MenRelCom;
     private javax.swing.JMenuBar Menu;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JMenu jMenu5;
-    private javax.swing.JMenu jMenu6;
-    private javax.swing.JMenu jMenu7;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenu jMenu2;
     private javax.swing.JLabel lblData;
     public static javax.swing.JLabel lblUsuario;
     // End of variables declaration//GEN-END:variables

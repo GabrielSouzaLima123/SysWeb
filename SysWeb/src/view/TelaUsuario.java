@@ -185,6 +185,12 @@ public class TelaUsuario extends javax.swing.JInternalFrame {
             }
         });
 
+        txtUsuNome.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtUsuNomeActionPerformed(evt);
+            }
+        });
+
         cboUsuPerfil.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "user", "admin" }));
         cboUsuPerfil.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -357,6 +363,10 @@ public class TelaUsuario extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
         remover();
     }//GEN-LAST:event_btnUsuDeleteActionPerformed
+
+    private void txtUsuNomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtUsuNomeActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtUsuNomeActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
