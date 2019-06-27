@@ -131,7 +131,7 @@ public class TelaRelatorio extends javax.swing.JInternalFrame {
         } catch (java.sql.SQLSyntaxErrorException e) {
             JOptionPane.showMessageDialog(null, "Relatório inválido!");
             System.out.println(e);
-        }  catch (Exception e2) {
+        } catch (Exception e2) {
             JOptionPane.showInputDialog(null, e2);
         }
 
@@ -180,14 +180,47 @@ public class TelaRelatorio extends javax.swing.JInternalFrame {
                     txtImoDes.setText(null);
                     txtImoVen.setText(null);
                     txtImoAlu.setText(null);
-                    
+
                     btnImoAdicionar.setEnabled(true);
-                txtCliPesquisar.setEnabled(true);
-                tblClientes.setVisible(true);
+                    txtCliPesquisar.setEnabled(true);
+                    tblClientes.setVisible(true);
                 }
             }
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e);
+        }
+    }
+
+    private void remover_relatorio() {
+        int confirma = JOptionPane.showConfirmDialog(null, "Tem certeza que deseja remover este relatório?", "Atenção!", JOptionPane.YES_NO_OPTION);
+        if (confirma == JOptionPane.YES_OPTION) {
+            String sql = "delete from tbimoveis where idimovel=?";
+            try {
+                pst = con.prepareStatement(sql);
+                pst.setString(1, txtId.getText());
+                int apagado = pst.executeUpdate();
+                if (apagado > 0) {
+                    JOptionPane.showMessageDialog(null, "Relatório removido com sucesso!");
+                    txtId.setText(null);
+                    txtData.setText(null);
+                    txtCliId.setText(null);
+                    txtImoEnd.setText(null);
+                    txtImoBai.setText(null);
+                    txtImoCep.setText(null);
+                    txtImoAre.setText(null);
+                    txtImoQua.setText(null);
+                    txtImoSui.setText(null);
+                    txtImoSal.setText(null);
+                    txtImoGar.setText(null);
+                    txtImoPin.setText(null);
+                    txtImoDes.setText(null);
+                    txtImoVen.setText(null);
+                    txtImoAlu.setText(null);
+
+                }
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, e);
+            }
         }
     }
 
@@ -264,6 +297,9 @@ public class TelaRelatorio extends javax.swing.JInternalFrame {
         btnImoAlterar = new javax.swing.JButton();
         btnImoExcluir = new javax.swing.JButton();
         btnImoImprimir = new javax.swing.JButton();
+        jLabel24 = new javax.swing.JLabel();
+        jLabel25 = new javax.swing.JLabel();
+        jLabel26 = new javax.swing.JLabel();
 
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Cliente"));
 
@@ -635,6 +671,12 @@ public class TelaRelatorio extends javax.swing.JInternalFrame {
             }
         });
 
+        jLabel24.setText("m²");
+
+        jLabel25.setText("R$");
+
+        jLabel26.setText("R$");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -656,10 +698,12 @@ public class TelaRelatorio extends javax.swing.JInternalFrame {
                             .addComponent(txtImoBai)
                             .addComponent(cboImoSit, 0, 185, Short.MAX_VALUE)
                             .addComponent(txtImoEnd)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(txtImoAre, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 101, Short.MAX_VALUE)
-                                .addComponent(txtImoCep, javax.swing.GroupLayout.Alignment.LEADING))
-                            .addComponent(jScrollPane3))))
+                            .addComponent(txtImoCep)
+                            .addComponent(jScrollPane3)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(txtImoAre, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jLabel24)))))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -690,11 +734,15 @@ public class TelaRelatorio extends javax.swing.JInternalFrame {
                                             .addComponent(txtImoPin)
                                             .addGroup(layout.createSequentialGroup()
                                                 .addComponent(txtImoVen, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(jLabel25)
                                                 .addGap(0, 0, Short.MAX_VALUE))))
                                     .addGroup(layout.createSequentialGroup()
                                         .addComponent(jLabel22)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                         .addComponent(txtImoAlu, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jLabel26)
                                         .addGap(0, 0, Short.MAX_VALUE)))))
                         .addContainerGap())
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
@@ -738,7 +786,8 @@ public class TelaRelatorio extends javax.swing.JInternalFrame {
                         .addComponent(txtImoSui, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jLabel17)
                         .addComponent(jLabel21)
-                        .addComponent(txtImoVen, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(txtImoVen, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel25)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel14)
@@ -747,14 +796,16 @@ public class TelaRelatorio extends javax.swing.JInternalFrame {
                         .addComponent(jLabel18)
                         .addComponent(txtImoSal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jLabel22)
-                        .addComponent(txtImoAlu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(txtImoAlu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel26)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel15)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(txtImoAre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jLabel19)
-                        .addComponent(txtImoGar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(txtImoGar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel24, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(18, 18, 18)
@@ -804,6 +855,8 @@ public class TelaRelatorio extends javax.swing.JInternalFrame {
 
     private void btnImoExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnImoExcluirActionPerformed
         // TODO add your handling code here:
+        remover_relatorio();
+        
     }//GEN-LAST:event_btnImoExcluirActionPerformed
 
     private void btnImoImprimirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnImoImprimirActionPerformed
@@ -865,6 +918,9 @@ public class TelaRelatorio extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel23;
+    private javax.swing.JLabel jLabel24;
+    private javax.swing.JLabel jLabel25;
+    private javax.swing.JLabel jLabel26;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;

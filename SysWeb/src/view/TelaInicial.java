@@ -43,10 +43,8 @@ public class TelaInicial extends javax.swing.JFrame {
         MenCadCli = new javax.swing.JMenuItem();
         MenCadRel = new javax.swing.JMenuItem();
         MenCadUso = new javax.swing.JMenuItem();
-        MenCadImo = new javax.swing.JMenuItem();
-        jMenu2 = new javax.swing.JMenu();
-        jMenu1 = new javax.swing.JMenu();
         MenRel = new javax.swing.JMenu();
+        jMenuItem1 = new javax.swing.JMenuItem();
         MenAju = new javax.swing.JMenu();
         MenAjuSob = new javax.swing.JMenuItem();
         MenOpc = new javax.swing.JMenu();
@@ -120,25 +118,20 @@ public class TelaInicial extends javax.swing.JFrame {
         });
         MenCad.add(MenCadUso);
 
-        MenCadImo.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_I, java.awt.event.InputEvent.ALT_MASK));
-        MenCadImo.setText("Imóvel");
-        MenCadImo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                MenCadImoActionPerformed(evt);
-            }
-        });
-        MenCad.add(MenCadImo);
-
         Menu.add(MenCad);
-
-        jMenu2.setText("Venda");
-        Menu.add(jMenu2);
-
-        jMenu1.setText("Locação");
-        Menu.add(jMenu1);
 
         MenRel.setText("Relatório");
         MenRel.setEnabled(false);
+
+        jMenuItem1.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_P, java.awt.event.InputEvent.ALT_MASK));
+        jMenuItem1.setText("Imprimir ");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
+        MenRel.add(jMenuItem1);
+
         Menu.add(MenRel);
 
         MenAju.setText("Ajuda");
@@ -262,11 +255,12 @@ public class TelaInicial extends javax.swing.JFrame {
         Desktop.add(relatorio);
     }//GEN-LAST:event_MenCadRelActionPerformed
 
-    private void MenCadImoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenCadImoActionPerformed
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
         // TODO add your handling code here:
-        TelaVenda venda = new TelaVenda();
-        venda.setVisible(true);
-    }//GEN-LAST:event_MenCadImoActionPerformed
+        TelaImprimir imp = new TelaImprimir();
+        imp.setVisible(true);
+        Desktop.add(imp);
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -316,7 +310,6 @@ public class TelaInicial extends javax.swing.JFrame {
     private javax.swing.JMenuItem MenAjuSob;
     private static javax.swing.JMenu MenCad;
     private javax.swing.JMenuItem MenCadCli;
-    private javax.swing.JMenuItem MenCadImo;
     public static javax.swing.JMenuItem MenCadRel;
     public static javax.swing.JMenuItem MenCadUso;
     private javax.swing.JMenu MenOpc;
@@ -326,8 +319,7 @@ public class TelaInicial extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JMenu jMenu1;
-    private javax.swing.JMenu jMenu2;
+    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JLabel lblData;
     public static javax.swing.JLabel lblUsuario;
     // End of variables declaration//GEN-END:variables
